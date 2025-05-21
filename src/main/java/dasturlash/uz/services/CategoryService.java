@@ -2,10 +2,7 @@ package dasturlash.uz.services;
 
 import dasturlash.uz.dto.CategoryDTO;
 import dasturlash.uz.dto.CategoryResponseDTO;
-import dasturlash.uz.dto.RegionDTO;
-import dasturlash.uz.dto.RegionResponseDTO;
 import dasturlash.uz.entities.CategoryEntity;
-import dasturlash.uz.entities.RegionEntity;
 import dasturlash.uz.repository.CategoryRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -19,7 +16,7 @@ public class CategoryService {
     @Autowired
     private CategoryRepository categoryRepository;
 
-    public List<CategoryDTO> getAllRegions() {
+    public List<CategoryDTO> getAllCategories() {
         Iterable<CategoryEntity> entities = categoryRepository.findAll();
         List<CategoryDTO> dtos = new ArrayList<>();
 

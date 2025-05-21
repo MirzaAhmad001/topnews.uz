@@ -1,10 +1,7 @@
 package dasturlash.uz.services;
 
-import dasturlash.uz.dto.CategoryDTO;
-import dasturlash.uz.dto.CategoryResponseDTO;
 import dasturlash.uz.dto.SectionDTO;
 import dasturlash.uz.dto.SectionResponseDTO;
-import dasturlash.uz.entities.CategoryEntity;
 import dasturlash.uz.entities.SectionEntity;
 import dasturlash.uz.repository.Sectionrepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,7 +17,7 @@ public class SectionService {
     @Autowired
     private Sectionrepository sectionrepository;
 
-    public List<SectionDTO> getAllRegions() {
+    public List<SectionDTO> getAllSections() {
         Iterable<SectionEntity> entities = sectionrepository.findAll();
         List<SectionDTO> dtos = new ArrayList<>();
 
