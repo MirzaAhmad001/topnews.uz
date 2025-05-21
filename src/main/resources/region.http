@@ -1,0 +1,40 @@
+### GET ALL
+GET localhost:8080/region
+
+### CREATE
+POST localhost:8080/region
+Content-Type: application/json
+
+{
+  "nameUz": "BUHORO",
+  "nameRu": "БУХАРА",
+  "nameEn": "BUKHARA",
+  "createDate": "2025-05-14T12:00:00",
+  "key": "125",
+  "visible": true,
+  "orderNumber": 2
+}
+
+### UPDATE
+PUT localhost:8080/region/2
+Content-Type: application/json
+
+{
+  "nameUz": "BUHORO",
+  "nameRu": "БУХАРА",
+  "nameEn": "BUKHARA",
+  "createDate": "2025-05-10T12:00:00",
+  "key": "125",
+  "visible": true,
+  "orderNumber": 2
+}
+
+### DELETE
+DELETE localhost:8080/region/2
+Content-Type: application/json
+
+### GET BY Language
+GET localhost:8080/region/English
+Content-Type: application/json
+
+
