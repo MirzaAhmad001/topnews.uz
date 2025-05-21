@@ -5,9 +5,14 @@ import dasturlash.uz.enums.RegionNameEn;
 import dasturlash.uz.enums.RegionNameRu;
 import dasturlash.uz.enums.RegionNameUz;
 import jakarta.persistence.*;
+import lombok.Getter;
+import lombok.Setter;
 
 import java.time.LocalDateTime;
 
+
+@Getter
+@Setter
 @Entity
 @Table(name = "section")
 public class SectionEntity {
