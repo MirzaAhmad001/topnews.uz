@@ -2,6 +2,7 @@ package dasturlash.uz.services;
 
 import dasturlash.uz.dto.CategoryDTO;
 import dasturlash.uz.dto.CategoryResponseDTO;
+import dasturlash.uz.dto.RegionResponseDTO;
 import dasturlash.uz.entities.CategoryEntity;
 import dasturlash.uz.repository.CategoryRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -82,32 +83,34 @@ public class CategoryService {
         Iterable<CategoryEntity> entities = categoryRepository.findAll();
         List<CategoryResponseDTO> categoryResponseDTOS = new ArrayList<>();
 
-        switch (language) {
-            case "English":{
-                entities.forEach(entity -> {
-                    CategoryResponseDTO dto = new CategoryResponseDTO();
-                    dto.setId(entity.getId());
-                    dto.setKey(entity.getKey());
+        entities.forEach(entity -> {
+            CategoryResponseDTO dto = new CategoryResponseDTO();
+            dto.setId(entity.getId());
+            dto.setKey(entity.getKey());
+
+            switch (language) {
+
+                case "English": {
                     dto.setName(entity.getNameEn());
-                });
-            }
-            case "O'zbekcha":{
-                entities.forEach(entity -> {
-                    CategoryResponseDTO dto = new CategoryResponseDTO();
-                    dto.setId(entity.getId());
-                    dto.setKey(entity.getKey());
+                    categoryResponseDTOS.add(dto);
+                    break;
+                }
+
+                case "O'zbekcha": {
                     dto.setName(entity.getNameUz());
-                });
-            }
-            case "Russian":{
-                entities.forEach(entity -> {
-                    CategoryResponseDTO dto = new CategoryResponseDTO();
-                    dto.setId(entity.getId());
-                    dto.setKey(entity.getKey());
+                    categoryResponseDTOS.add(dto);
+                    break;
+                }
+
+                case "Russian": {
                     dto.setName(entity.getNameRu());
-                });
+                    categoryResponseDTOS.add(dto);
+                    break;
+                }
+
             }
-        }
+
+        });
         return categoryResponseDTOS;
     }
 }

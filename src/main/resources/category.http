@@ -1,0 +1,40 @@
+### GET ALL
+GET localhost:8080/category
+
+### CREATE
+POST localhost:8080/category
+Content-Type: application/json
+
+{
+  "nameUz": "Sport",
+  "nameRu": "Спорт",
+  "nameEn": "Sport",
+  "createDate": "2025-05-18T12:00:00",
+  "key": "sport",
+  "visible": true,
+  "orderNumber": 4
+}
+
+### UPDATE
+PUT localhost:8080/category/3
+Content-Type: application/json
+
+{
+  "orderNumber": 3,
+  "nameUz": "Iqtisodiyot",
+  "nameRu": "Экономика",
+  "nameEn": "Economics",
+  "visible": true,
+  "key": "iqtisodiyot",
+  "createDate": "2025-05-18T12:00:00"
+}
+
+### DELETE
+DELETE localhost:8080/category/2
+Content-Type: application/json
+
+### GET BY Language
+GET localhost:8080/category/English
+Content-Type: application/json
+
+

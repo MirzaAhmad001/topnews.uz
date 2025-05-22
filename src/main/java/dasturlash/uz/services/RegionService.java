@@ -83,32 +83,33 @@ public class RegionService {
         Iterable<RegionEntity> entities = regionRepository.findAll();
         List<RegionResponseDTO> regionResponseDTOs = new ArrayList<>();
 
-        switch (language) {
-            case "English":{
-                entities.forEach(entity -> {
-                    RegionResponseDTO dto = new RegionResponseDTO();
-                    dto.setId(entity.getId());
-                    dto.setKey(entity.getKey());
+        entities.forEach(entity -> {
+            RegionResponseDTO dto = new RegionResponseDTO();
+            dto.setId(entity.getId());
+            dto.setKey(entity.getKey());
+
+            switch (language) {
+
+                case "English": {
                     dto.setName(entity.getNameEn().toString());
-                });
-            }
-            case "O'zbekcha":{
-                entities.forEach(entity -> {
-                    RegionResponseDTO dto = new RegionResponseDTO();
-                    dto.setId(entity.getId());
-                    dto.setKey(entity.getKey());
+                    regionResponseDTOs.add(dto);
+                    break;
+                }
+
+                case "O'zbekcha": {
                     dto.setName(entity.getNameUz().toString());
-                });
-            }
-            case "Russian":{
-                entities.forEach(entity -> {
-                    RegionResponseDTO dto = new RegionResponseDTO();
-                    dto.setId(entity.getId());
-                    dto.setKey(entity.getKey());
+                    regionResponseDTOs.add(dto);
+                    break;
+                }
+
+                case "Russian": {
                     dto.setName(entity.getNameRu().toString());
-                });
+                    regionResponseDTOs.add(dto);
+                    break;
+                }
+
             }
-        }
+        });
         return regionResponseDTOs;
     }
 

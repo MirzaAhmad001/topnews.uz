@@ -6,13 +6,13 @@ POST localhost:8080/region
 Content-Type: application/json
 
 {
-  "nameUz": "BUHORO",
-  "nameRu": "БУХАРА",
-  "nameEn": "BUKHARA",
-  "createDate": "2025-05-14T12:00:00",
-  "key": "125",
+  "nameUz": "ANDIJON",
+  "nameRu": "КАРАКАЛПАКИСТАН",
+  "nameEn": "KARAKALPAKISTAN",
+  "createDate": "2025-05-20T12:00:00",
+  "key": "QORAQALPOG'ISTON",
   "visible": true,
-  "orderNumber": 2
+  "orderNumber": 3
 }
 
 ### UPDATE
@@ -20,21 +20,22 @@ PUT localhost:8080/region/2
 Content-Type: application/json
 
 {
-  "nameUz": "BUHORO",
-  "nameRu": "БУХАРА",
-  "nameEn": "BUKHARA",
-  "createDate": "2025-05-10T12:00:00",
-  "key": "125",
+  "nameUz": "TOSHKENT",
+  "nameRu": "ТАШКЕНТ",
+  "nameEn": "TASHKENT",
+  "createDate": "2025-05-19T12:00:00",
+  "key": "tashkent",
   "visible": true,
-  "orderNumber": 2
+  "orderNumber": 1
 }
 
+
 ### DELETE
-DELETE localhost:8080/region/2
+DELETE localhost:8080/region/5
 Content-Type: application/json
 
 ### GET BY Language
-GET localhost:8080/region/English
+GET localhost:8080/region/v1/English
 Content-Type: application/json
 
 

@@ -1,5 +1,6 @@
 package dasturlash.uz.services;
 
+import dasturlash.uz.dto.CategoryResponseDTO;
 import dasturlash.uz.dto.SectionDTO;
 import dasturlash.uz.dto.SectionResponseDTO;
 import dasturlash.uz.entities.SectionEntity;
@@ -55,6 +56,8 @@ public class SectionService {
 
     public SectionDTO update(SectionDTO dto, Integer id) {
         Optional<SectionEntity> entity = sectionrepository.findById(id);
+
+
         if (entity.isPresent()) {
             SectionEntity entity1 = entity.get();
             entity1.setNameUz(dto.getNameUz());
@@ -83,32 +86,34 @@ public class SectionService {
         Iterable<SectionEntity> entities = sectionrepository.findAll();
         List<SectionResponseDTO> dtos = new ArrayList<>();
 
-        switch (language) {
-            case "English":{
-                entities.forEach(entity -> {
-                    SectionResponseDTO dto = new SectionResponseDTO();
-                    dto.setId(entity.getId());
-                    dto.setKey(entity.getKey());
+        entities.forEach(entity -> {
+            SectionResponseDTO dto = new SectionResponseDTO();
+            dto.setId(entity.getId());
+            dto.setKey(entity.getKey());
+
+            switch (language) {
+
+                case "English": {
                     dto.setName(entity.getNameEn());
-                });
-            }
-            case "O'zbekcha":{
-                entities.forEach(entity -> {
-                    SectionResponseDTO dto = new SectionResponseDTO();
-                    dto.setId(entity.getId());
-                    dto.setKey(entity.getKey());
+                    dtos.add(dto);
+                    break;
+                }
+
+                case "O'zbekcha": {
                     dto.setName(entity.getNameUz());
-                });
-            }
-            case "Russian":{
-                entities.forEach(entity -> {
-                    SectionResponseDTO dto = new SectionResponseDTO();
-                    dto.setId(entity.getId());
-                    dto.setKey(entity.getKey());
+                    dtos.add(dto);
+                    break;
+                }
+
+                case "Russian": {
                     dto.setName(entity.getNameRu());
-                });
+                    dtos.add(dto);
+                    break;
+                }
+
             }
-        }
+
+        });
         return dtos;
     }
 }

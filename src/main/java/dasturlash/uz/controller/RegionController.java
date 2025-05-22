@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/region")
+@RequestMapping("/region/v1")
 public class RegionController {
     @Autowired
     private RegionService regionService;
@@ -37,7 +37,7 @@ public class RegionController {
     }
 
     @GetMapping("/{language}")
-    public ResponseEntity<List<RegionResponseDTO>> getAllRegionsByLanguage(@PathVariable String language) {
+    public ResponseEntity<List<RegionResponseDTO>> getAllRegionsByLanguage(@PathVariable("language") String language) {
         return ResponseEntity.ok(regionService.getListByLanguage(language));
     }
 }

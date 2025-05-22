@@ -1,5 +1,7 @@
 package dasturlash.uz.dto;
 
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Positive;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -8,14 +10,18 @@ import java.time.LocalDateTime;
 
 public class SectionDTO {
     private Integer id;
+    @Positive(message = "you can only give positive numbers")
     private Integer orderNumber;
+    @NotNull(message = "O'zbekcha nom bo'lishi shart")
     private String nameUz;
+    @NotNull(message = "наименования категории объязательно")
     private String nameRu;
+    @NotNull(message = "name must be fill")
     private String nameEn;
     private Boolean visible;
+    @NotNull(message = "key must have some value")
     private String key;
     private LocalDateTime createDate;
-    private Integer imageId;
 
     public Integer getId() {
         return id;
@@ -81,11 +87,4 @@ public class SectionDTO {
         this.createDate = createDate;
     }
 
-    public Integer getImageId() {
-        return imageId;
-    }
-
-    public void setImageId(Integer imageId) {
-        this.imageId = imageId;
-    }
 }

@@ -1,0 +1,40 @@
+### GET ALL
+GET localhost:8080/section
+
+### CREATE
+POST localhost:8080/section
+Content-Type: application/json
+
+{
+  "nameUz": "Muharrir",
+  "nameRu": "Редактор",
+  "nameEn": "Editor",
+  "createDate": "2025-05-18T12:00:00",
+  "key": "128",
+  "visible": true,
+  "orderNumber": 2
+}
+
+### UPDATE
+PUT localhost:8080/section/2
+Content-Type: application/json
+
+{
+  "nameUz": "Asosiy",
+  "nameRu": "Основной",
+  "nameEn": "Main",
+  "createDate": "2025-05-12T12:00:00",
+  "key": "123",
+  "visible": true,
+  "orderNumber": 1
+}
+
+### DELETE
+DELETE localhost:8080/section/2
+Content-Type: application/json
+
+### GET BY Language
+GET localhost:8080/section/English
+Content-Type: application/json
+
+
