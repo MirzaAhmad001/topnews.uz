@@ -1,8 +1,8 @@
 ### GET ALL
-GET localhost:8080/category
+GET localhost:8080/category/v1
 
 ### CREATE
-POST localhost:8080/category
+POST localhost:8080/category/v1
 Content-Type: application/json
 
 {
@@ -16,7 +16,7 @@ Content-Type: application/json
 }
 
 ### UPDATE
-PUT localhost:8080/category/3
+PUT localhost:8080/category/v1/3
 Content-Type: application/json
 
 {
@@ -30,11 +30,11 @@ Content-Type: application/json
 }
 
 ### DELETE
-DELETE localhost:8080/category/2
+DELETE localhost:8080/category/v1/2
 Content-Type: application/json
 
 ### GET BY Language
-GET localhost:8080/category/English
+GET localhost:8080/category/v1/English
 Content-Type: application/json
 
 

@@ -3,7 +3,9 @@ package dasturlash.uz.controller;
 
 import dasturlash.uz.dto.RegionDTO;
 import dasturlash.uz.dto.RegionResponseDTO;
+import dasturlash.uz.enums.Language;
 import dasturlash.uz.services.RegionService;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -22,12 +24,12 @@ public class RegionController {
     }
 
     @PostMapping("")
-    public  ResponseEntity<RegionDTO> createRegion(@RequestBody RegionDTO regionDTO) {
+    public  ResponseEntity<RegionDTO> createRegion(@Valid @RequestBody RegionDTO regionDTO) {
         return ResponseEntity.ok(regionService.create(regionDTO));
     }
 
     @PutMapping("/{id}")
-    public  ResponseEntity<RegionDTO> updateRegion(@PathVariable int id, @RequestBody RegionDTO regionDTO) {
+    public  ResponseEntity<RegionDTO> updateRegion(@PathVariable int id, @Valid @RequestBody RegionDTO regionDTO) {
         return ResponseEntity.ok(regionService.update(regionDTO, id));
     }
 
@@ -36,8 +38,8 @@ public class RegionController {
         return ResponseEntity.ok(regionService.delete(id));
     }
 
-    @GetMapping("/{language}")
-    public ResponseEntity<List<RegionResponseDTO>> getAllRegionsByLanguage(@PathVariable("language") String language) {
+    @GetMapping("/byLanguage")
+    public ResponseEntity<List<RegionResponseDTO>> getAllRegionsByLanguage(@RequestHeader("Accept-Language") Language language) {
         return ResponseEntity.ok(regionService.getListByLanguage(language));
     }
 }

@@ -3,6 +3,7 @@ package dasturlash.uz.services;
 import dasturlash.uz.dto.RegionDTO;
 import dasturlash.uz.dto.RegionResponseDTO;
 import dasturlash.uz.entities.RegionEntity;
+import dasturlash.uz.enums.Language;
 import dasturlash.uz.repository.RegionRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -79,7 +80,7 @@ public class RegionService {
         return null;
     }
 
-    public List<RegionResponseDTO> getListByLanguage(String language) {
+    public List<RegionResponseDTO> getListByLanguage(Language language) {
         Iterable<RegionEntity> entities = regionRepository.findAll();
         List<RegionResponseDTO> regionResponseDTOs = new ArrayList<>();
 
@@ -90,19 +91,19 @@ public class RegionService {
 
             switch (language) {
 
-                case "English": {
+                case EN: {
                     dto.setName(entity.getNameEn().toString());
                     regionResponseDTOs.add(dto);
                     break;
                 }
 
-                case "O'zbekcha": {
+                case UZ : {
                     dto.setName(entity.getNameUz().toString());
                     regionResponseDTOs.add(dto);
                     break;
                 }
 
-                case "Russian": {
+                case RU : {
                     dto.setName(entity.getNameRu().toString());
                     regionResponseDTOs.add(dto);
                     break;

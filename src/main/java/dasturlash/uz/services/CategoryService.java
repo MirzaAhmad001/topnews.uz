@@ -4,6 +4,7 @@ import dasturlash.uz.dto.CategoryDTO;
 import dasturlash.uz.dto.CategoryResponseDTO;
 import dasturlash.uz.dto.RegionResponseDTO;
 import dasturlash.uz.entities.CategoryEntity;
+import dasturlash.uz.exceptions.AppBadException;
 import dasturlash.uz.repository.CategoryRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -39,6 +40,15 @@ public class CategoryService {
     }
 
     public CategoryDTO create(CategoryDTO dto) {
+        CategoryEntity entityKey = categoryRepository.findByKey(dto.getKey());
+        if (entityKey != null) {
+            throw new AppBadException("there is data with this key, alter the key");
+        }
+
+        CategoryEntity entityOrderNumber = categoryRepository.findByOrderNumber(dto.getOrderNumber());
+        if(entityOrderNumber != null) {
+            throw new AppBadException("there is data with this key, alter the order number");
+        }
         CategoryEntity entity = new CategoryEntity();
         entity.setNameUz(dto.getNameUz());
         entity.setNameRu(dto.getNameRu());
@@ -55,6 +65,7 @@ public class CategoryService {
 
     public CategoryDTO update(CategoryDTO dto, Integer id) {
         Optional<CategoryEntity> entity = categoryRepository.findById(id);
+
         if (entity.isPresent()) {
             CategoryEntity entity1 = entity.get();
             entity1.setNameUz(dto.getNameUz());

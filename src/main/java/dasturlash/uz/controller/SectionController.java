@@ -5,6 +5,7 @@ import dasturlash.uz.dto.CategoryResponseDTO;
 import dasturlash.uz.dto.SectionDTO;
 import dasturlash.uz.dto.SectionResponseDTO;
 import dasturlash.uz.services.SectionService;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -12,7 +13,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("section")
+@RequestMapping("section/v1")
 public class SectionController {
     @Autowired
     private SectionService sectionService;
@@ -23,12 +24,12 @@ public class SectionController {
     }
 
     @PostMapping("")
-    public  ResponseEntity<SectionDTO> create(@RequestBody SectionDTO dto) {
+    public  ResponseEntity<SectionDTO> create(@Valid @RequestBody SectionDTO dto) {
         return ResponseEntity.ok(sectionService.create(dto));
     }
 
     @PutMapping("/{id}")
-    public  ResponseEntity<SectionDTO> update(@PathVariable Integer id, @RequestBody SectionDTO dto) {
+    public  ResponseEntity<SectionDTO> update(@PathVariable Integer id,@Valid @RequestBody SectionDTO dto) {
         return ResponseEntity.ok(sectionService.update(dto, id));
     }
 

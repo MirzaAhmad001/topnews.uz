@@ -5,6 +5,7 @@ import dasturlash.uz.dto.CategoryResponseDTO;
 import dasturlash.uz.dto.RegionDTO;
 import dasturlash.uz.dto.RegionResponseDTO;
 import dasturlash.uz.services.CategoryService;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -12,7 +13,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("category")
+@RequestMapping("category/v1")
 public class CategoryController {
     @Autowired
     private CategoryService categoryService;
@@ -23,12 +24,12 @@ public class CategoryController {
     }
 
     @PostMapping("")
-    public  ResponseEntity<CategoryDTO> create(@RequestBody CategoryDTO dto) {
+    public  ResponseEntity<CategoryDTO> create(@Valid @RequestBody CategoryDTO dto) {
         return ResponseEntity.ok(categoryService.create(dto));
     }
 
     @PutMapping("/{id}")
-    public  ResponseEntity<CategoryDTO> update(@PathVariable Integer id, @RequestBody CategoryDTO dto) {
+    public  ResponseEntity<CategoryDTO> update(@PathVariable Integer id, @Valid @RequestBody CategoryDTO dto) {
         return ResponseEntity.ok(categoryService.update(dto, id));
     }
 

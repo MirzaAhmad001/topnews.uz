@@ -1,8 +1,8 @@
 ### GET ALL
-GET localhost:8080/region
+GET localhost:8080/region/v1
 
 ### CREATE
-POST localhost:8080/region
+POST localhost:8080/region/v1
 Content-Type: application/json
 
 {
@@ -16,7 +16,7 @@ Content-Type: application/json
 }
 
 ### UPDATE
-PUT localhost:8080/region/2
+PUT localhost:8080/region/v1/2
 Content-Type: application/json
 
 {
@@ -31,11 +31,10 @@ Content-Type: application/json
 
 
 ### DELETE
-DELETE localhost:8080/region/5
+DELETE localhost:8080/region/v1/5
 Content-Type: application/json
 
 ### GET BY Language
-GET localhost:8080/region/v1/English
-Content-Type: application/json
-
+GET localhost:8080/region/v1/byLanguage
+Accept-Language: EN
 
