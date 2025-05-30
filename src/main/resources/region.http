@@ -6,13 +6,11 @@ POST localhost:8080/region/v1
 Content-Type: application/json
 
 {
-  "nameUz": "ANDIJON",
-  "nameRu": "КАРАКАЛПАКИСТАН",
-  "nameEn": "KARAKALPAKISTAN",
-  "createDate": "2025-05-20T12:00:00",
-  "key": "QORAQALPOG'ISTON",
-  "visible": true,
-  "orderNumber": 3
+  "nameUz": "QASHQADARYO",
+  "nameRu": "КАШКАДАРЯ",
+  "nameEn": "KASHKADARYA",
+  "key": "qashqadaryo",
+  "orderNumber": 13
 }
 
 ### UPDATE
@@ -23,7 +21,6 @@ Content-Type: application/json
   "nameUz": "TOSHKENT",
   "nameRu": "ТАШКЕНТ",
   "nameEn": "TASHKENT",
-  "createDate": "2025-05-19T12:00:00",
   "key": "tashkent",
   "visible": true,
   "orderNumber": 1

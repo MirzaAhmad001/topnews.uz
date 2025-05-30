@@ -1,6 +1,7 @@
 package dasturlash.uz.dto;
 
 import dasturlash.uz.enums.ProfileRole;
+import dasturlash.uz.enums.ProfileStatus;
 import jakarta.validation.constraints.NotNull;
 
 import java.time.LocalDateTime;
@@ -16,7 +17,7 @@ public class ProfileDTO {
     private String username;
     @NotNull
     private String password;
-    private String status;
+    private ProfileStatus status;
 
     private LocalDateTime createdDate;
 
@@ -75,11 +76,11 @@ public class ProfileDTO {
         this.password = password;
     }
 
-    public String getStatus() {
+    public ProfileStatus getStatus() {
         return status;
     }
 
-    public void setStatus(String status) {
+    public void setStatus(ProfileStatus status) {
         this.status = status;
     }
 

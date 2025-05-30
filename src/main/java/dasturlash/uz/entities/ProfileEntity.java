@@ -2,6 +2,7 @@ package dasturlash.uz.entities;
 
 
 import dasturlash.uz.enums.ProfileRole;
+import dasturlash.uz.enums.ProfileStatus;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
@@ -32,7 +33,7 @@ public class ProfileEntity {
     private String password;
 
     @Column
-    private String status;
+    private ProfileStatus status;
 
     @Column
     private LocalDateTime createdDate;

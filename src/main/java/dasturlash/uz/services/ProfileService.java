@@ -1,6 +1,7 @@
 package dasturlash.uz.services;
 
 
+import dasturlash.uz.dto.FilterResultDTO;
 import dasturlash.uz.dto.ProfileDTO;
 import dasturlash.uz.dto.ProfileFilterDTO;
 import dasturlash.uz.entities.CategoryEntity;
@@ -178,15 +179,10 @@ public class ProfileService {
     }
 
     public Page<ProfileDTO> filter(ProfileFilterDTO filterDTO, int page, int size) {
-        Page<ProfileEntity> pageObj = customProfileRepository.filter(filterDTO, page, size);
-
-        List<ProfileEntity> entityList = pageObj.getContent();
-        Long totalAmount = pageObj.getTotalElements();
-
-        List<ProfileDTO> dtoList = new LinkedList<>();
-        entityList.forEach(entity -> dtoList.add(toDTO(entity)));
-
-        return new PageImpl<ProfileDTO>(dtoList, PageRequest.of(page, size), totalAmount);
+        FilterResultDTO<ProfileEntity> result = customProfileRepository.filter(filterDTO, page, size);
+        List<ProfileDTO> profileDTOList = new LinkedList<>();
+        result.getContent().forEach(entity -> profileDTOList.add(toDTO(entity)));
+        return new PageImpl<>(profileDTOList, PageRequest.of(page, size), result.getTotal());
     }
 
 

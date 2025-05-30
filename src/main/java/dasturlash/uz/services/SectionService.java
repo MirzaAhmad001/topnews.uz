@@ -8,6 +8,7 @@ import dasturlash.uz.repository.Sectionrepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -46,7 +47,7 @@ public class SectionService {
         entity.setNameEn(dto.getNameEn());
         entity.setOrderNumber(dto.getOrderNumber());
         entity.setKey(dto.getKey());
-        entity.setCreatedDate(dto.getCreateDate());
+        entity.setCreatedDate(LocalDateTime.now());
 
         sectionrepository.save(entity);
         dto.setId(entity.getId());
@@ -65,7 +66,6 @@ public class SectionService {
             entity1.setNameEn(dto.getNameEn());
             entity1.setOrderNumber(dto.getOrderNumber());
             entity1.setKey(dto.getKey());
-            entity1.setCreatedDate(dto.getCreateDate());
             sectionrepository.save(entity1);
             return dto;
         }

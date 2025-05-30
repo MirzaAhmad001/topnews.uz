@@ -1,0 +1,15 @@
+### CREATE
+POST localhost:8080/article/v1
+Content-Type: application/json
+
+{
+  "title": "First",
+  "description": "It is not the last",
+  "content": "There may be a lot of exceptions",
+  "regionId": 2,
+  "moderatorId": 5,
+  "publisherId": 6,
+  "publishedState": "NOT_PUBLISHED",
+  "categoryIds": [1, 3],
+  "sectionIds": [1]
+}

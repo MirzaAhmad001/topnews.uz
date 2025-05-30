@@ -8,6 +8,7 @@ import dasturlash.uz.repository.RegionRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -46,7 +47,7 @@ public class RegionService {
         regionEntity.setNameEn(regionDTO.getNameEn());
         regionEntity.setOrderNumber(regionDTO.getOrderNumber());
         regionEntity.setKey(regionDTO.getKey());
-        regionEntity.setCreatedDate(regionDTO.getCreateDate());
+        regionEntity.setCreatedDate(LocalDateTime.now());
 
         regionRepository.save(regionEntity);
         regionDTO.setId(regionEntity.getId());
@@ -63,7 +64,6 @@ public class RegionService {
             entity.setNameEn(regionDTO.getNameEn());
             entity.setOrderNumber(regionDTO.getOrderNumber());
             entity.setKey(regionDTO.getKey());
-            entity.setCreatedDate(regionDTO.getCreateDate());
             regionRepository.save(entity);
             return regionDTO;
         }

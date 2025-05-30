@@ -9,6 +9,7 @@ import dasturlash.uz.repository.CategoryRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -49,23 +50,32 @@ public class CategoryService {
         if(entityOrderNumber != null) {
             throw new AppBadException("there is data with this key, alter the order number");
         }
+
         CategoryEntity entity = new CategoryEntity();
         entity.setNameUz(dto.getNameUz());
         entity.setNameRu(dto.getNameRu());
         entity.setNameEn(dto.getNameEn());
         entity.setOrderNumber(dto.getOrderNumber());
         entity.setKey(dto.getKey());
-        entity.setCreatedDate(dto.getCreateDate());
+        entity.setCreatedDate(LocalDateTime.now());
 
         categoryRepository.save(entity);
         dto.setId(entity.getId());
-
         return dto;
     }
 
     public CategoryDTO update(CategoryDTO dto, Integer id) {
-        Optional<CategoryEntity> entity = categoryRepository.findById(id);
+        CategoryEntity entityKey = categoryRepository.findByKey(dto.getKey());
+        if (entityKey != null) {
+            throw new AppBadException("there is data with this key, alter the key");
+        }
 
+        CategoryEntity entityOrderNumber = categoryRepository.findByOrderNumber(dto.getOrderNumber());
+        if(entityOrderNumber != null) {
+            throw new AppBadException("there is data with this key, alter the order number");
+        }
+
+        Optional<CategoryEntity> entity = categoryRepository.findById(id);
         if (entity.isPresent()) {
             CategoryEntity entity1 = entity.get();
             entity1.setNameUz(dto.getNameUz());
@@ -73,7 +83,6 @@ public class CategoryService {
             entity1.setNameEn(dto.getNameEn());
             entity1.setOrderNumber(dto.getOrderNumber());
             entity1.setKey(dto.getKey());
-            entity1.setCreatedDate(dto.getCreateDate());
             categoryRepository.save(entity1);
             return dto;
         }

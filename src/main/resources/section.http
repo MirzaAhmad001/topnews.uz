@@ -2,21 +2,20 @@
 GET localhost:8080/section
 
 ### CREATE
-POST localhost:8080/section
+POST localhost:8080/section/v1
 Content-Type: application/json
 
 {
-  "nameUz": "Muharrir",
-  "nameRu": "Редактор",
-  "nameEn": "Editor",
-  "createDate": "2025-05-18T12:00:00",
-  "key": "128",
+  "nameUz": "Video Yangilik",
+  "nameRu": "видео новости",
+  "nameEn": "Video news",
+  "key": "video_news",
   "visible": true,
-  "orderNumber": 2
+  "orderNumber": 5
 }
 
 ### UPDATE
-PUT localhost:8080/section/2
+PUT localhost:8080/section/v1
 Content-Type: application/json
 
 {

@@ -19,7 +19,7 @@ public class ProfileRoleService {
         oldList.stream().filter(n -> !newList.contains(n)).forEach(pe -> profileRoleRepository.deleteRoleByProfileId(profileId));
     }
 
-    private void create(Integer profileId, ProfileRole pe) {
+    public void create(Integer profileId, ProfileRole pe) {
         ProfileRoleEntity entity = new ProfileRoleEntity();
         entity.setProfileId(profileId);
         entity.setRole(pe);
