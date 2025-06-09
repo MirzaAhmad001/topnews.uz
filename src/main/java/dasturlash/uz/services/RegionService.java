@@ -62,8 +62,8 @@ public class RegionService {
             entity.setNameUz(regionDTO.getNameUz());
             entity.setNameRu(regionDTO.getNameRu());
             entity.setNameEn(regionDTO.getNameEn());
-            entity.setOrderNumber(regionDTO.getOrderNumber());
-            entity.setKey(regionDTO.getKey());
+            //entity.setOrderNumber(regionDTO.getOrderNumber());
+            //entity.setKey(regionDTO.getKey());
             regionRepository.save(entity);
             return regionDTO;
         }

@@ -18,12 +18,8 @@ public class ProfileDTO {
     @NotNull
     private String password;
     private ProfileStatus status;
-
     private LocalDateTime createdDate;
-
-    @NotNull
     private Boolean visible;
-
     private Integer photoId;
     @NotNull
     private List<ProfileRole> roles;

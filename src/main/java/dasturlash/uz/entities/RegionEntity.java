@@ -21,12 +21,15 @@ public class RegionEntity {
     @Column
     private Integer orderNumber;
 
+    @Enumerated(EnumType.STRING)
     @Column
     private RegionNameUz nameUz;
 
+    @Enumerated(EnumType.STRING)
     @Column
     private RegionNameRu nameRu;
 
+    @Enumerated(EnumType.STRING)
     @Column
     private RegionNameEn nameEn;
 

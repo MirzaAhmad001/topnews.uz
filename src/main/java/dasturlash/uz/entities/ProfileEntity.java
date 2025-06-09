@@ -32,8 +32,9 @@ public class ProfileEntity {
     @Column(name = "password", nullable = false)
     private String password;
 
+    @Enumerated(EnumType.STRING)
     @Column
-    private ProfileStatus status;
+    private ProfileStatus status = ProfileStatus.NOT_ACTIVE;
 
     @Column
     private LocalDateTime createdDate;
@@ -43,4 +44,7 @@ public class ProfileEntity {
 
     @Column(name = "photo_id")
     private Integer photoId;
+
+    @Column(name = "attempt_count")
+    private Integer attemptCount = 0;
 }

@@ -6,13 +6,11 @@ POST localhost:8080/category/v1
 Content-Type: application/json
 
 {
-  "nameUz": "Sport",
-  "nameRu": "Спорт",
-  "nameEn": "Sport",
-  "createDate": "2025-05-18T12:00:00",
-  "key": "sport",
-  "visible": true,
-  "orderNumber": 4
+  "orderNumber": 2,
+  "nameUz": "Iqtisodiyot",
+  "nameRu": "Экономика",
+  "nameEn": "Economics",
+  "key": "iqtisodiyot"
 }
 
 ### UPDATE

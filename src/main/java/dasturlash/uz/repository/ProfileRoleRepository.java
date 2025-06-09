@@ -25,4 +25,6 @@ public interface ProfileRoleRepository extends CrudRepository<ProfileRoleEntity,
     @Query("Delete from ProfileRoleEntity where profileId =?1")
     void deleteById(Integer profileId);
 
+
+
 }

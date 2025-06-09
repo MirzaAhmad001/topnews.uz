@@ -14,6 +14,7 @@ import java.util.UUID;
 @Getter
 @Setter
 @Entity
+@Table(name = "article")
 public class ArticleEntity {
 
     public ArticleEntity() {
@@ -34,7 +35,9 @@ public class ArticleEntity {
     private RegionEntity region;
     private Integer moderatorId;
     private Integer publisherId;
-    private PublishedState publishedState;
+    @Enumerated(EnumType.STRING)
+    @Column(name = "published_state")
+    private PublishedState publishedState = PublishedState.NOT_PUBLISHED;
     private String readTime;
     private LocalDateTime createdDate;
     private LocalDateTime publishedDate;

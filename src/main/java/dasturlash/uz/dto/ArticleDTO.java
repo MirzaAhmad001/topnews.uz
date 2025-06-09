@@ -32,7 +32,7 @@ public class ArticleDTO {
     private Integer regionId;
     private Integer moderatorId;
     private Integer publisherId;
-    private PublishedState publishedState;
+    private PublishedState publishedState = PublishedState.PUBLISHED;
     private String readTime;
     private LocalDateTime createdDate;
     private LocalDateTime publishedDate;

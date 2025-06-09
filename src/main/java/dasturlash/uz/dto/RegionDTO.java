@@ -25,7 +25,6 @@ public class RegionDTO {
     @NotNull(message = "name must be fill")
     private RegionNameEn nameEn;
     private Boolean visible;
-    @NotNull(message = "key must have some value")
     private String key;
     private LocalDateTime createDate;
 }

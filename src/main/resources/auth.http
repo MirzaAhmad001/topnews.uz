@@ -1,0 +1,34 @@
+### Registration
+POST localhost:8080/api/v1/auth/registration
+Content-Type: application/json
+
+{
+  "name": "Afandi",
+  "surname": "Toshmatov",
+  "username": "umidjonmax0001@gmail.com"
+}
+
+### Login
+POST localhost:8080/api/v1/auth/login/AhmadSodiq/11042000
+
+### Registration using Phone
+POST localhost:8080/api/v1/auth/registration
+Content-Type: application/json
+
+{
+  "name": "Mirza Ahmad0001",
+  "surname": "Sadikov0001",
+  "username": "998900019351",
+  "password": "12345"
+}
+
+
+### Get token
+POST https://notify.eskiz.uz/api/auth/login
+Content-Type: application/json
+
+{
+  "email": "mirzaahmadsodiqov.001@gmail.com",
+  "password": "HUWysA76NDfm3PwG85EaArq8bP1J2Xy6TnL7tIoR"
+}
+

@@ -6,14 +6,12 @@ POST localhost:8080/profile
 Content-Type: application/json
 
 {
-  "name": "Eshmat6",
-  "surname": "Boltayev6",
-  "username": "EshBolta6",
-  "password": "123456789",
-  "roles": ["ROLE_PUBLISHER", "ROLE_USER"],
-  "visible": true
+  "name": "MirzaAhmad",
+  "surname": "Sodiqov",
+  "username": "AhmadSodiq",
+  "password": "11042000",
+  "roles": ["ROLE_ADMIN", "ROLE_USER"]
 }
-
 ### UPDATE
 PUT localhost:8080/profile/updateByUser?username=AhmadSodiq&password=11042000
 Content-Type: application/json
@@ -52,8 +50,10 @@ Content-Type: application/json
   "name": "Eshmat"
 }
 
-### GET BY LANG
-GET localhost:8080/pr
+
+
+
+
 
 
 
