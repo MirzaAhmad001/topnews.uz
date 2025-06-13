@@ -6,8 +6,11 @@ import dasturlash.uz.enums.ProfileStatus;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
 
 import java.time.LocalDateTime;
+import java.util.Collection;
 import java.util.List;
 
 
@@ -46,5 +49,5 @@ public class ProfileEntity {
     private Integer photoId;
 
     @Column(name = "attempt_count")
-    private Integer attemptCount = 0;
+    private Integer attemptCount = 0 ;
 }
