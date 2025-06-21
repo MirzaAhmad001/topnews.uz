@@ -1,40 +1,28 @@
-### CREATE
-POST localhost:8080/article/v1
+### Registration using Email
+POST localhost:8080/api/v1/article/admin
 Content-Type: application/json
 
 {
-  "title": "Third",
-  "description": "It is not the last, it's the Third",
-  "content": "There may be a lot of exceptions, by the way",
-  "regionId": 2,
-  "moderatorId": 6,
-  "publisherId": 6,
-  "publishedState": "NOT_PUBLISHED",
-  "categoryIds": [2, 3],
-  "sectionIds": [1, 3, 5]
+  "title": "Article title 1",
+  "description": "Article 1 description",
+  "content": "Article 1 content",
+  "imageId": "12345",
+  "regionId": 1,
+  "readTime": 60,
+  "categoryList": [
+    {
+      "id": 1
+    },
+    {
+      "id": 2
+    }
+  ],
+  "sectionList": [
+    {
+      "id": 1
+    },
+    {
+      "id": 2
+    }
+  ]
 }
-
-
-### UPDATE
-PUT localhost:8080/article/v1
-Content-Type: application/json
-
-{
-  "title": "Third",
-  "description": "It is not the last, it's the Third",
-  "content": "There may be a lot of exceptions, by the way",
-  "regionId": 2,
-  "moderatorId": 6,
-  "publisherId": 6,
-  "publishedState": "NOT_PUBLISHED",
-  "categoryIds": [2, 3],
-  "sectionIds": [1, 4]
-}
-
-### Deleting
-DELETE localhost:8080/article/v1?articleId=2185f447-d090-45e8-a121-e6fc5057d4f1
-Content-Type: application/json
-
-### Change published state
-PUT localhost:8080/article/v1/changeStatus?articleId=e3b38bd9-4c6c-43ba-836b-74be4b92507c&state=PUBLISHED
-

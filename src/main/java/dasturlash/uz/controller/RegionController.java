@@ -1,10 +1,8 @@
 package dasturlash.uz.controller;
 
-
 import dasturlash.uz.dto.RegionDTO;
-import dasturlash.uz.dto.RegionResponseDTO;
-import dasturlash.uz.enums.Language;
-import dasturlash.uz.services.RegionService;
+import dasturlash.uz.enums.AppLanguageEnum;
+import dasturlash.uz.service.RegionService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -13,33 +11,35 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/region/v1")
+@RequestMapping("/api/v1/region")
 public class RegionController {
+
     @Autowired
     private RegionService regionService;
 
-    @GetMapping("")
-    public ResponseEntity<List<RegionDTO>> getAllRegions() {
-        return ResponseEntity.ok(regionService.getAllRegions());
+    @PostMapping("/admin")
+    public ResponseEntity<RegionDTO> create(@Valid @RequestBody RegionDTO dto) {
+        return ResponseEntity.ok(regionService.create(dto));
     }
 
-    @PostMapping("")
-    public  ResponseEntity<RegionDTO> createRegion(@Valid @RequestBody RegionDTO regionDTO) {
-        return ResponseEntity.ok(regionService.create(regionDTO));
+    @PutMapping("/admin/{id}")
+    public ResponseEntity<RegionDTO> update(@PathVariable("id") Integer id,
+                                            @Valid @RequestBody RegionDTO newDto) {
+        return ResponseEntity.ok(regionService.update(id, newDto));
     }
 
-    @PutMapping("/{id}")
-    public  ResponseEntity<RegionDTO> updateRegion(@PathVariable int id, @Valid @RequestBody RegionDTO regionDTO) {
-        return ResponseEntity.ok(regionService.update(regionDTO, id));
-    }
-
-    @DeleteMapping("/{id}")
-    public  ResponseEntity<RegionDTO> deleteRegion(@PathVariable int id) {
+    @DeleteMapping("/admin/{id}")
+    public ResponseEntity<Boolean> delete(@PathVariable Integer id) {
         return ResponseEntity.ok(regionService.delete(id));
     }
 
-    @GetMapping("/byLanguage")
-    public ResponseEntity<List<RegionResponseDTO>> getAllRegionsByLanguage(@RequestHeader("Accept-Language") Language language) {
-        return ResponseEntity.ok(regionService.getListByLanguage(language));
+    @GetMapping("/admin")
+    public ResponseEntity<List<RegionDTO>> all() {
+        return ResponseEntity.ok(regionService.getAll());
+    }
+
+    @GetMapping("/lang")
+    public ResponseEntity<List<RegionDTO>> getByLang(@RequestHeader(name = "Accept-Language", defaultValue = "uz") AppLanguageEnum language) {
+        return ResponseEntity.ok(regionService.getAllByLang(language));
     }
 }

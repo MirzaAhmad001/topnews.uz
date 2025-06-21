@@ -1,25 +1,51 @@
 package dasturlash.uz.config;
 
+import dasturlash.uz.enums.ProfileRoleEnum;
 import dasturlash.uz.enums.ProfileStatus;
 import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import java.util.Collection;
+import java.util.LinkedList;
 import java.util.List;
 
 public class CustomUserDetails implements UserDetails {
-
+    private Integer id;
     private String username;
     private String password;
-    private Integer id;
     private ProfileStatus status;
+    private List<SimpleGrantedAuthority> roles;
 
-    public CustomUserDetails(String username, String password, Integer id, ProfileStatus status) {
+    public CustomUserDetails(Integer id, String username, String password, ProfileStatus status,
+                             List<ProfileRoleEnum> roleList) {
+        this.id = id;
         this.username = username;
         this.password = password;
-        this.id = id;
         this.status = status;
+
+        List<SimpleGrantedAuthority> roles = new LinkedList<>();
+        roleList.forEach(role -> {
+            roles.add(new SimpleGrantedAuthority(role.name()));
+        });
+        this.roles = roles;
     }
+
+    @Override
+    public Collection<? extends GrantedAuthority> getAuthorities() {
+        return roles;
+    }
+
+    @Override
+    public String getPassword() {
+        return password;
+    }
+
+    @Override
+    public String getUsername() {
+        return username;
+    }
+
     @Override
     public boolean isAccountNonExpired() {
         return true;
@@ -40,18 +66,7 @@ public class CustomUserDetails implements UserDetails {
         return true;
     }
 
-    @Override
-    public Collection<? extends GrantedAuthority> getAuthorities() {
-        return null;
-    }
-
-    @Override
-    public String getPassword() {
-        return password;
-    }
-
-    @Override
-    public String getUsername() {
-        return username;
+    public Integer getId() {
+        return id;
     }
 }

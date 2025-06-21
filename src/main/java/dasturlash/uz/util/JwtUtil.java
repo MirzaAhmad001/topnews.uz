@@ -1,6 +1,7 @@
 package dasturlash.uz.util;
 
 import dasturlash.uz.dto.JwtDTO;
+import dasturlash.uz.enums.ProfileRoleEnum;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.io.Decoders;
@@ -9,6 +10,7 @@ import io.jsonwebtoken.security.Keys;
 import javax.crypto.SecretKey;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class JwtUtil {
@@ -18,10 +20,10 @@ public class JwtUtil {
     /**
      * General
      */
-    public static String encode(String username, String role) {
+    public static String encode(String username, List<ProfileRoleEnum> roles) { // [ROLE_ADMIN,ROLE_USER]
         Map<String, Object> extraClaims = new HashMap<>();
         extraClaims.put("username", username);
-        extraClaims.put("role", role);
+        extraClaims.put("role", roles);
 
         return Jwts
                 .builder()
@@ -41,10 +43,10 @@ public class JwtUtil {
                 .parseSignedClaims(token)
                 .getPayload();
         String username = claims.getSubject();
-        String role = (String) claims.get("role");
+        List<ProfileRoleEnum> roles = (List<ProfileRoleEnum>) claims.get("role");
         JwtDTO jwtDTO = new JwtDTO();
         jwtDTO.setUsername(username);
-        jwtDTO.setRole(role);
+        jwtDTO.setRoles(roles);
         return jwtDTO;
     }
 
@@ -84,5 +86,4 @@ public class JwtUtil {
         byte[] keyBytes = Decoders.BASE64.decode(secretKey);
         return Keys.hmacShaKeyFor(keyBytes);
     }
-
 }

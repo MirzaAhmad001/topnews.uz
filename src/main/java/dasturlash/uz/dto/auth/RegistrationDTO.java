@@ -1,15 +1,19 @@
 package dasturlash.uz.dto.auth;
 
-
-import jakarta.validation.constraints.NotNull;
+import jakarta.validation.Valid;
+import jakarta.validation.constraints.NotBlank;
 import lombok.Getter;
 import lombok.Setter;
 
 @Getter
 @Setter
-public class RegistrationDTO {
+public class RegistrationDTO { // TODO write validation
+    @NotBlank(message = "Name required")
     private String name;
-    private String username;
-    private String password;
+    @NotBlank(message = "Surname required")
     private String surname;
+    @NotBlank(message = "Username required")
+    private String username;
+    @NotBlank(message = "password required")
+    private String password;
 }

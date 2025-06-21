@@ -1,7 +1,9 @@
 package dasturlash.uz.dto;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
+import jakarta.validation.constraints.Min;
+import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
-import jakarta.validation.constraints.Positive;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -9,18 +11,26 @@ import java.time.LocalDateTime;
 
 @Getter
 @Setter
+@JsonInclude(JsonInclude.Include.NON_NULL)
 public class SectionDTO {
     private Integer id;
-    @Positive(message = "you can only give positive numbers")
+
+    @NotNull(message = "OrderNumber required")
+    @Min(value = 1, message = "OrderNumber have to higher than 0")
     private Integer orderNumber;
-    @NotNull(message = "O'zbekcha nom bo'lishi shart")
+
+    @NotBlank(message = "NameUz required")
     private String nameUz;
-    @NotNull(message = "наименования категории объязательно")
+
+    @NotBlank(message = "NameRu required")
     private String nameRu;
-    @NotNull(message = "name must be fill")
+
+    @NotBlank(message = "NameEn required")
     private String nameEn;
-    private Boolean visible;
-    @NotNull(message = "key must have some value")
-    private String key;
-    private LocalDateTime createDate;
+
+    @NotBlank(message = "SectionKey required")
+    private String sectionKey;
+
+    private LocalDateTime createdDate;
+    private String name;
 }

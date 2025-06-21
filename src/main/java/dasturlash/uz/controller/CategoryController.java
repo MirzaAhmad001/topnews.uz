@@ -1,10 +1,8 @@
 package dasturlash.uz.controller;
 
 import dasturlash.uz.dto.CategoryDTO;
-import dasturlash.uz.dto.CategoryResponseDTO;
-import dasturlash.uz.dto.RegionDTO;
-import dasturlash.uz.dto.RegionResponseDTO;
-import dasturlash.uz.services.CategoryService;
+import dasturlash.uz.enums.AppLanguageEnum;
+import dasturlash.uz.service.CategoryService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -13,33 +11,36 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("category/v1")
+@RequestMapping("/api/v1/category")
 public class CategoryController {
+
     @Autowired
     private CategoryService categoryService;
 
-    @GetMapping("")
-    public ResponseEntity<List<CategoryDTO>> getAllRegions() {
-        return ResponseEntity.ok(categoryService.getAllCategories());
-    }
-
-    @PostMapping("")
-    public  ResponseEntity<CategoryDTO> create(@Valid @RequestBody CategoryDTO dto) {
+    @PostMapping("/admin")
+    public ResponseEntity<CategoryDTO> create(@Valid @RequestBody CategoryDTO dto) {
         return ResponseEntity.ok(categoryService.create(dto));
     }
 
-    @PutMapping("/{id}")
-    public  ResponseEntity<CategoryDTO> update(@PathVariable Integer id, @Valid @RequestBody CategoryDTO dto) {
-        return ResponseEntity.ok(categoryService.update(dto, id));
+    @PutMapping("/admin/{id}")
+    public ResponseEntity<CategoryDTO> update(@PathVariable("id") Integer id,
+                                              @Valid @RequestBody CategoryDTO newDto) {
+        return ResponseEntity.ok(categoryService.update(id, newDto));
     }
 
-    @DeleteMapping("/{id}")
-    public  ResponseEntity<CategoryDTO> delete(@PathVariable Integer id) {
+    @DeleteMapping("/admin/{id}")
+    public ResponseEntity<Boolean> delete(@PathVariable Integer id) {
         return ResponseEntity.ok(categoryService.delete(id));
     }
 
-    @GetMapping("/{language}")
-    public ResponseEntity<List<CategoryResponseDTO>> getAllRegionsByLanguage(@PathVariable String language) {
-        return ResponseEntity.ok(categoryService.getListByLanguage(language));
+    @GetMapping("/admin")
+    public ResponseEntity<List<CategoryDTO>> all() {
+        return ResponseEntity.ok(categoryService.getAll());
+    }
+
+    // /api/v1/category/lang?language=uz
+    @GetMapping("/lang")
+    public ResponseEntity<List<CategoryDTO>> getByLang(@RequestHeader(name = "Accept-Language", defaultValue = "uz") AppLanguageEnum language) {
+        return ResponseEntity.ok(categoryService.getAllByLang(language));
     }
 }

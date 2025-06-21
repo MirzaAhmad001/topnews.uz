@@ -1,10 +1,8 @@
 package dasturlash.uz.controller;
 
-import dasturlash.uz.dto.CategoryDTO;
-import dasturlash.uz.dto.CategoryResponseDTO;
 import dasturlash.uz.dto.SectionDTO;
-import dasturlash.uz.dto.SectionResponseDTO;
-import dasturlash.uz.services.SectionService;
+import dasturlash.uz.enums.AppLanguageEnum;
+import dasturlash.uz.service.SectionService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -13,33 +11,34 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("section/v1")
+@RequestMapping("/api/v1/section")
 public class SectionController {
+
     @Autowired
     private SectionService sectionService;
 
-    @GetMapping("")
-    public ResponseEntity<List<SectionDTO>> getAllSections() {
-        return ResponseEntity.ok(sectionService.getAllSections());
-    }
-
-    @PostMapping("")
-    public  ResponseEntity<SectionDTO> create(@Valid @RequestBody SectionDTO dto) {
+    @PostMapping("/admin")
+    public ResponseEntity<SectionDTO> create(@Valid @RequestBody SectionDTO dto) {
         return ResponseEntity.ok(sectionService.create(dto));
     }
 
-    @PutMapping("/{id}")
-    public  ResponseEntity<SectionDTO> update(@PathVariable Integer id,@Valid @RequestBody SectionDTO dto) {
-        return ResponseEntity.ok(sectionService.update(dto, id));
+    @PutMapping("/admin/{id}")
+    public ResponseEntity<SectionDTO> update(@PathVariable("id") Integer id, @Valid @RequestBody SectionDTO newDto) {
+        return ResponseEntity.ok(sectionService.update(id, newDto));
     }
 
-    @DeleteMapping("/{id}")
-    public  ResponseEntity<SectionDTO> delete(@PathVariable Integer id) {
+    @DeleteMapping("/admin/{id}")
+    public ResponseEntity<Boolean> delete(@PathVariable Integer id) {
         return ResponseEntity.ok(sectionService.delete(id));
     }
 
-    @GetMapping("/{language}")
-    public ResponseEntity<List<SectionResponseDTO>> getAllRegionsByLanguage(@PathVariable String language) {
-        return ResponseEntity.ok(sectionService.getListByLanguage(language));
+    @GetMapping("/admin")
+    public ResponseEntity<List<SectionDTO>> all() {
+        return ResponseEntity.ok(sectionService.getAll());
+    }
+
+    @GetMapping("/lang")
+    public ResponseEntity<List<SectionDTO>> getByLang(@RequestHeader(name = "Accept-Language", defaultValue = "uz") AppLanguageEnum language) {
+        return ResponseEntity.ok(sectionService.getAllByLang(language));
     }
 }

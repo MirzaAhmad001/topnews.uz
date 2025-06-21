@@ -1,34 +1,46 @@
-### Registration
+### Registration using Email
 POST localhost:8080/api/v1/auth/registration
 Content-Type: application/json
 
 {
   "name": "Afandi",
   "surname": "Toshmatov",
-  "username": "umidjonmax0001@gmail.com"
+  "username": "bigmangcom@gmail.com",
+  "password": "12345"
 }
 
-### Login
-POST localhost:8080/api/v1/auth/login/AhmadSodiq/11042000
+### Email registration confirm
+GET http://localhost:8080/api/v1/auth/registration/email/verification/bigmangcom@gmail.com/91557
 
-### Registration using Phone
+
+### Registration using sms
 POST localhost:8080/api/v1/auth/registration
 Content-Type: application/json
 
 {
-  "name": "Mirza Ahmad0001",
-  "surname": "Sadikov0001",
-  "username": "998900019351",
+  "name": "Afandi",
+  "surname": "Toshmatov",
+  "username": "+998910171231",
   "password": "12345"
 }
 
 
-### Get token
-POST https://notify.eskiz.uz/api/auth/login
+### Registration using sms
+PUT localhost:8080/api/v1/auth/registration/sms/verification
 Content-Type: application/json
 
 {
-  "email": "mirzaahmadsodiqov.001@gmail.com",
-  "password": "HUWysA76NDfm3PwG85EaArq8bP1J2Xy6TnL7tIoR"
+  "phoneNumber": "+998910171231",
+  "code": "28867"
+}
+
+
+### Login
+POST localhost:8080/api/v1/auth/login
+Content-Type: application/json
+
+{
+  "username": "bigmangcom@gmail.com",
+  "password": "12345"
 }
 
